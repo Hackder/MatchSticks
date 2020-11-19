@@ -1,0 +1,33 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+.drag-object {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  transform: trnaslate(-50%, -50%);
+}
+.toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  > div {
+    pointer-events: all;
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0px 0px 10px 3px #cccccc;
+    display: flex;
+    flex-direction: row;
+    > div {
+      cursor: pointer;
+      padding: 20px;
+    }
+  }
+}
