@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="toolbar">
-    <div cdkDropList>
+    <div class="toolbar-container" cdkDropList>
       <div
         cdkDrag
         [cdkDragData]="horizontalStick"
@@ -36,6 +36,9 @@
       >
         <app-stick [style.zoom]="0.3" [data]="angledStick"></app-stick>
       </div>
+    </div>
+    <div class="top-right">
+      <button (click)="sticks = []" mat-flat-button>Reset</button>
     </div>
   </div>
 </div>
