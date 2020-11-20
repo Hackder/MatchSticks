@@ -4,8 +4,11 @@ import {
   Component,
   ElementRef,
   NgZone,
+  OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
+import { Ptor } from 'protractor';
 import { MatchStick } from './models/MatchStick.model';
 import { Point } from './models/Point.model';
 
@@ -14,7 +17,7 @@ import { Point } from './models/Point.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy {
   horizontalStick: MatchStick = {
     length: 200,
     x: 0,
@@ -55,10 +58,21 @@ export class AppComponent implements AfterViewInit {
     this.mousePosition = new Point(e.clientX, e.clientY);
   }
 
-  ngAfterViewInit() {
+  touchmove(e: TouchEvent) {
+    if (e.touches.length <= 0) return;
+    this.mousePosition = new Point(e.touches[0].clientX, e.touches[0].clientY);
+  }
+
+  ngOnInit() {
     this.zone.runOutsideAngular(() => {
       window.addEventListener('mousemove', this.mousemove.bind(this));
+      window.addEventListener('touchmove', this.touchmove.bind(this));
     });
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('mousemove', this.mousemove.bind(this));
+    window.removeEventListener('touchmove', this.touchmove.bind(this));
   }
 
   insideStickReleased(event: CdkDragRelease<MatchStick>) {
