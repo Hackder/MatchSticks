@@ -39,6 +39,13 @@ export class AppComponent implements OnInit, OnDestroy {
     angle: 45,
   };
 
+  angledStick2: MatchStick = {
+    length: 200,
+    x: 0,
+    y: 0,
+    angle: -45,
+  };
+
   sticks: MatchStick[] = [];
 
   mousePosition: Point = new Point(0, 0);

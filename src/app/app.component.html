@@ -36,6 +36,13 @@
       >
         <app-stick [style.zoom]="0.3" [data]="angledStick"></app-stick>
       </div>
+      <div
+        cdkDrag
+        [cdkDragData]="angledStick2"
+        (cdkDragDropped)="stickDropped($event)"
+      >
+        <app-stick [style.zoom]="0.3" [data]="angledStick2"></app-stick>
+      </div>
     </div>
     <div class="top-right">
       <button (click)="sticks = []" mat-flat-button>Reset</button>
